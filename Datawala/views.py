@@ -2,6 +2,7 @@ import json
 import pandas as pd
 
 from django.http import HttpResponse, JsonResponse
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from StoreData.serializers import PrimarySerializer
@@ -47,3 +48,9 @@ class FetchData(APIView):
             print("Error", e)
             resp = {"status": "fail"}
         return JsonResponse(resp, safe=False)
+
+class PutData(viewsets.ModelViewSet):
+
+    queryset = PrimaryData.objects.all()
+    serializer_class = PrimarySerializer
+
