@@ -2,7 +2,9 @@ import json
 import pandas as pd
 
 from django.http import HttpResponse, JsonResponse
+from rest_framework.response import Response
 from rest_framework.views import APIView
+from StoreData.serializers import PrimarySerializer
 from StoreData.models import PrimaryData
 
 
@@ -12,6 +14,21 @@ def home_page(request):
     return JsonResponse(friends, safe=False)
 
 class FetchData(APIView):
+
+    queryset = PrimaryData.objects.all()
+    serializer_class = PrimarySerializer
+
+    def get(self, request, pk=None):
+        try:
+            df = pd.DataFrame(PrimaryData.objects.values()).to_json(orient='records')
+            #Pri_serializer = PrimarySerializer(df, many=True, context={'request': request})
+            return JsonResponse(json.loads(df), safe = False)
+        except Exception as e:
+            print(e)
+            return JsonResponse(e, safe=False)
+
+
+
     def post(self, request):
         try:
             form = json.loads(request.body)
