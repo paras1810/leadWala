@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "Datawala/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "Datawala/wsgi.py"
+      }
+    ]
+}
