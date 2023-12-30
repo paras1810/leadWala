@@ -18,11 +18,17 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from .views import home_page
+from .views import PutData
+from rest_framework import routers
+
+routers = routers.DefaultRouter()
+routers.register(r'feeddata', PutData)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home_page),
     path('fetchdata/', views.FetchData.as_view(), name='FetchData'),
+    path('putdata/', include(routers.urls)),
     path('api/', include('StoreData.urls'))
 
 ]
