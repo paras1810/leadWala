@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'Datawala.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db.cmjmchqjegoemdxecbis.supabase.co',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': '#pr8133sM8133455',
-        'HOST': 'postgres',
+        'HOST': 'db.cmjmchqjegoemdxecbis.supabase.co',
         'PORT': 5432,
     }
 }
